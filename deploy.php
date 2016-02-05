@@ -11,15 +11,6 @@
 // =========================================[ Configuration start ]===
 
 /**
- * It's preferable to configure the script using `deploy-config.php` file.
- *
- * Rename `deploy-config.example.php` to `deploy-config.php` and edit the
- * configuration options there instead of here. That way, you won't have to edit
- * the configuration again if you download the new version of `deploy.php`.
- */
-if (file_exists(basename(__FILE__, '.php').'-config.php')) require_once basename(__FILE__, '.php').'-config.php';
-
-/**
  * Protect the script from unauthorized access by using a secret access token.
  * If it's not present in the access URL as a GET variable named `sat`
  * e.g. deploy.php?sat=Bett...s the script is not going to deploy.
@@ -184,6 +175,16 @@ if (!isset($_GET['sat']) || $_GET['sat'] !== SECRET_ACCESS_TOKEN) {
 }
 if (SECRET_ACCESS_TOKEN === 'BetterChangeMeNowOrSufferTheConsequences') {
 	die("<h2>You're suffering the consequences!<br>Change the SECRET_ACCESS_TOKEN from it's default value!</h2>");
+}
+/**
+ * Copy `deploy-config.example.php` to `deploy-myprojectname-config.php` and edit the
+ * configuration options there instead of here. That way, you won't have to edit
+ * the configuration again if you download the new version of `deploy.php`.
+ */
+if (!isset($_GET['project']) || !file_exists('deploy-'.$_GET['project'].'-config.php')) {
+	die('<h2>Configuration file for '.$_GET['project'].' project does not exists!</h2>');
+} else {
+	require_once 'deploy-'.$_GET['project'].'-config.php';
 }
 ?>
 <pre>
