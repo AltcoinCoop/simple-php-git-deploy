@@ -9,7 +9,7 @@
  * That way, you won't have to edit the configuration again if you download the
  * new version of `deploy.php`.
  *
- * @version 1.3.1
+ * @version 1.3.2
  */
 
 /**
@@ -147,3 +147,11 @@ define('COMPOSER_HOME', false);
  * @var string Email address
  */
 define('EMAIL_ON_ERROR', false);
+
+/**
+ * OPTIONAL
+ * Executes one last command
+ *
+ * @var string Command
+ */
+define('LAST_COMMAND', false);

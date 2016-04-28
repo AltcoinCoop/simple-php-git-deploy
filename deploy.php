@@ -154,6 +154,14 @@ if (!defined('COMPOSER_HOME')) define('COMPOSER_HOME', false);
  */
 if (!defined('EMAIL_ON_ERROR')) define('EMAIL_ON_ERROR', false);
 
+/**
+ * OPTIONAL
+ * Executes one last command
+ *
+ * @var string Executes one last command
+ */
+if (!defined('LAST_COMMAND')) define('LAST_COMMAND', false);
+
 // ===========================================[ Configuration end ]===
 
 // If there's authorization error, set the correct HTTP header.
@@ -316,6 +324,13 @@ if (CLEAN_UP) {
 	$commands['cleanup'] = sprintf(
 		'rm -rf %s'
 		, TMP_DIR
+	);
+}
+
+// Execute last command if configured
+if (defined('LAST_COMMAND') && LAST_COMMAND === true) {}
+	$commands[] = sprintf(
+		LAST_COMMAND
 	);
 }
 
