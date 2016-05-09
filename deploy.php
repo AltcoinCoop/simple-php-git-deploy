@@ -328,7 +328,7 @@ if (CLEAN_UP) {
 }
 
 // Execute last command if configured
-if (defined('LAST_COMMAND') && LAST_COMMAND === true) {}
+if (defined('LAST_COMMAND') && LAST_COMMAND === true) {
 	$commands[] = sprintf(
 		LAST_COMMAND
 	);
